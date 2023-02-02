@@ -6,27 +6,27 @@ terminale yazılacak olan komut:
 ---
 key.properties içerisine yazılacak olan kod:
 
-`storePassword= "az önce belirlemiş olduğunuz keystore şifresi"
+```storePassword= "az önce belirlemiş olduğunuz keystore şifresi"
 keyPassword= "az önce belirlemiş olduğunuz key şifresi"
 keyAlias=key
-storeFile=c:/key.jks`
+storeFile=c:/key.jks```
 ---
 build.gradle içerisine yazılacak olan kodlar:
 
-`def keyProperties = new Properties()
+```def keyProperties = new Properties()
 def keyPropertiesFile = rootProject.file('key.properties')
 if(keyPropertiesFile.exists()){
     keyProperties.load(new FileInputStream(keyPropertiesFile))
-}`
+}```
 
-`signingConfigs{
+```signingConfigs{
         release{
             keyAlias keyProperties['keyAlias']
             keyPassword keyProperties['keyPassword']
             storeFile file(keyProperties['storeFile'])
             storePassword keyProperties['storePassword']
         }
-    }`
+    }```
 ---
 APK olusturmak için terminale yazılacak olan komut:
 
